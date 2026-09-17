@@ -6,9 +6,5 @@ edition = "2024"
 [dependencies]
 filetime = "0.2.29"
 
-[profile.release]
-opt-level = "z"
-lto = true
-codegen-units = 1
-panic = "abort"
-strip = true
+[build]
+rustflags = ["-C", "prefer-dynamic"]
