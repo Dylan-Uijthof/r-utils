@@ -6,3 +6,9 @@ edition = "2024"
 [dependencies]
 filetime = "0.2.29"
 nix = { version = "0.31.3", features = ["signal"] }
+
+[profile.release]
+opt-level = 3       # max optimization (this is actually already the release default)
+lto = "fat"         # full link-time optimization across the whole dependency graph
+codegen-units = 1   # forces the compiler to optimize as one big unit instead of parallel chunks
+panic = "abort"     # skips unwinding machinery — faster panics, slightly faster normal-path code too
